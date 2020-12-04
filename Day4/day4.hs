@@ -32,7 +32,7 @@ delete x (y:xs)
     | otherwise = y : delete x xs
 
 isValid2 :: [String] -> Bool
-isValid2 xs = all (isValid3 . span (/= ':')) xs && isValid xs
+isValid2 = all (isValid3 . span (/= ':'))
 
 isValid3 :: (String, String) -> Bool
 isValid3 ("byr", _:snum) = all isDigit snum && 1920 <= num snum && num snum <= 2002
@@ -50,3 +50,6 @@ isValid3 _ = True
 
 num :: String -> Int
 num = read :: String -> Int
+
+
+
