@@ -43,7 +43,7 @@ isValid3 ("hgt", _:snum)
         | med == "in" = 59 <= num alt && num alt <= 76
         | otherwise = False                                        
             where (alt, med) = span isDigit snum
-isValid3 ("hcl", _:hair) = head hair == '#' && foldr (\ x -> (&&) (elem x ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'])) True (tail hair)
+isValid3 ("hcl", _:hair) = head hair == '#' && foldr (\ x -> (&&) (elem x "0123456789abcdef")) True (tail hair)
 isValid3 ("ecl", _:color) = elem color ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]
 isValid3 ("pid", _:id) = all isDigit id && length id == 9
 isValid3 _ = True
