@@ -48,12 +48,5 @@ isValid3 ("ecl", _:color) = elem color ["amb", "blu", "brn", "gry", "grn", "hzl"
 isValid3 ("pid", _:id) = all isDigit id && length id == 9
 isValid3 _ = True
 
-
 num :: String -> Int
 num = read :: String -> Int
-
-checkhair :: String -> Bool -- Checking hexadecimal
-checkhair (x:xs) = foldr (\ x -> (&&) (elem x ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'])) True xs
-
-
-
