@@ -43,7 +43,7 @@ parse_2 (x:xs) = if head (head xs) == 'n' then (x, []) else (x, map (\(x:_:xs) -
 getBags :: M.Map String [Bag] -> String -> Int
 -- This is a sum of the bags and the scalar product of the bags contained and the number of those bags, it can be reduced as m*(n+1)
 -- getBags state target = sum [fst x | x <- bags] + sum (zipWith (*) [fst x | x <- bags] [getBags state (snd x)| x <- bags])
-getBags state target = sum (zipWith (*) [fst x | x <- bags] [getBags state (snd x) + 1| x <- bags])
+getBags state target = sum [fst x * (getBags state (snd x) + 1)| x <- bags]
     where bags = state M.! target
 
 -- Used for debugging
