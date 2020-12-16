@@ -14,21 +14,14 @@ main = do
 
     -- Sol to part 1.
     let sol1 = sum $ filter (notValidAll fields) $ concat neTicket
-    print sol1
+    putStrLn $ "The solution to part 1 is: " ++ show sol1
 
     -- Sol to part 2.
     let posfields = transpose $ [ tickets | tickets <- neTicket, all (not . notValidAll fields) tickets]
     let valid = [[(\(x,_,_,_,_) -> x) field | field <- fields, isField ns field] | ns <- posfields]
     let cu1 = head [x | x <- valid, length x == 1]
     let sol2 = product $ getDepartures $ zip (concat $ assignFields valid cu1) myTicket
-    print sol2
-
-    -- debug
-    --let solbug = assignFields valid 0 []
-    let solbug = map length valid
-    let solbug2 = map length $ delete valid cu1
-    print solbug
-    print solbug2
+    putStrLn $ "The solution to part 2 is: " ++ show sol2
 
 
 parse1 :: [String] -> Field
@@ -65,13 +58,6 @@ assignFields fields deep used = do
 remove :: Eq a => [a] -> [a] -> [a]
 remove rs ls = foldl remove' ls rs
       where remove' ls x = filter (/= x) ls
-
-prueba :: [Integer]
-prueba = do
-    a <- []
-    if a == ()
-    then [1]
-    else [0]
 
 assignFields :: [[String]] -> [String] -> [[String]]
 assignFields poss del = if all (==1) (map length poss)
